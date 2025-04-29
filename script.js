@@ -52,7 +52,7 @@ async function fetchAvailability() {
     availabilityList.innerHTML = '<li>Loading availability...</li>'; // Initial loading message
 
     try {
-        const response = await fetch('/api/bookings/availability');
+        const response = await fetch('https://bookingenginebackend.onrender.com/api/bookings/availability');
         const data = await response.json();
 
         if (response.ok && data.availability && data.availability.length > 0) {
