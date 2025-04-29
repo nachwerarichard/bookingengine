@@ -15,7 +15,7 @@ async function submitBooking() {
     };
 
     try {
-        const response = await fetch('/api/bookings', {
+        const response = await fetch('https://bookingenginebackend.onrender.com', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
