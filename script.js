@@ -47,7 +47,7 @@ async function submitBooking() {
     }
 }
 
-async function fetchAvailabilit() {
+async function fetchAvailability() {
     const availabilityList = document.getElementById('availability-list');
     availabilityList.innerHTML = '<li>Loading availability...</li>'; // Initial loading message
 
@@ -91,21 +91,5 @@ async function fetchAvailabilit() {
         messageDiv.innerHTML = `<p style="color: red;">Please select both date and time.</p>`;
     }
 }
-
-function submitBooking() {
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-
-    if (name && email) {
-        document.getElementById('message').classList.remove('hidden');
-        document.getElementById('message').innerHTML = `<p style="color: green;">Booking confirmed for ${name}!</p>`;
-    } else {
-        document.getElementById('message').classList.remove('hidden');
-        document.getElementById('message').innerHTML = `<p style="color: red;">Please fill out all required fields.</p>`;
-    }
-}
-
-
-
 // Fetch initial availability when the page loads
 document.addEventListener('DOMContentLoaded', fetchAvailability);
