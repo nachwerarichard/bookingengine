@@ -69,6 +69,41 @@ async function fetchAvailability() {
         console.error('Error fetching availability:', error);
         availabilityList.innerHTML = '<li>Failed to load availability.</li>';
     }
+
+    async function checkAvailability() {
+    const date = document.getElementById('availability-date').value;
+    const time = document.getElementById('availability-time').value;
+    const availabilityMessageDiv = document.getElementById('availability-message');
+    const bookingForm = document.getElementById('bookingForm');
+    const bookingDateInput = document.getElementById('date');
+    const bookingTimeInput = document.getElementById('time');
+
+    try {
+        const response = await fetch(`/api/bookings/availability?date=${date}&time=${time}`);
+        const data = await response.json();
+
+        if (response.ok && data.available) {
+            availabilityMessageDiv.textContent = 'Available!';
+            bookingForm.style.display = 'block'; // Show the booking form
+            bookingDateInput.value = date; // Pre-fill date
+            bookingTimeInput.value = time; // Pre-fill time
+        } else {
+            availabilityMessageDiv.textContent = data.message || 'Not available.';
+            bookingForm.style.display = 'none'; // Hide the booking form
+        }
+    } catch (error) {
+        console.error('Error checking availability:', error);
+        availabilityMessageDiv.textContent = 'Error checking availability.';
+        bookingForm.style.display = 'none';
+    }
+}
+
+async function submitBooking() {
+    // ... (your existing submitBooking logic) ...
+    const date = document.getElementById('date').value; // Get pre-filled date
+    const time = document.getElementById('time').value; // Get pre-filled time
+    // ...
+}
 }
 
 // Fetch initial availability when the page loads
