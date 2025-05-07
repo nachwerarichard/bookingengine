@@ -1,67 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Booking Engine</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .hidden {
-            display: none;
-        }
-        .success {
-            color: green;
-        }
-        .error {
-            color: red;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Booking Engine</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .hidden { display: none; }
+    .success { color: green; }
+    .error { color: red; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Check Availability</h1>
-        <form id="availability-form">
-            <label for="check-date">Select Date:</label>
-            <input type="date" id="check-date" required><br><br>
+  <div class="container">
+    <h1>Check Availability</h1>
+    <form id="availability-form">
+      <label for="check-date">Select Date:</label>
+      <input type="date" id="check-date" required><br><br>
 
-            <label for="check-time">Select Time:</label>
-            <input type="time" id="check-time" required><br><br>
+      <label for="check-time">Select Time:</label>
+      <input type="time" id="check-time" required><br><br>
 
-            <button type="button" id="check-availability-btn">Check Availability</button>
-        </form>
+      <button type="button" id="check-availability-btn">Check Availability</button>
+    </form>
 
-        <div id="availability-message"></div>
+    <div id="availability-message"></div>
 
-        <h1 class="hidden" id="book-now-title">Book Now</h1>
-        <form class="booking-form hidden" id="booking-form">
-            <label for="service">Select Service:</label>
-            <select id="service">
-                <option value="room">Room Booking</option>
-                <option value="appointment">Appointment</option>
-            </select><br><br>
+    <button type="button" id="show-booking-form-btn" class="hidden">Book Now</button>
 
-            <label for="date">Select Date:</label>
-            <input type="date" id="date"><br><br>
+    <h1 class="hidden" id="book-now-title">Book Now</h1>
+    <form class="booking-form hidden" id="booking-form">
+      <label for="service">Select Service:</label>
+      <select id="service">
+        <option value="room">Room Booking</option>
+        <option value="appointment">Appointment</option>
+      </select><br><br>
 
-            <label for="time">Select Time:</label>
-            <input type="time" id="time"><br><br>
+      <label for="date">Select Date:</label>
+      <input type="date" id="date"><br><br>
 
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" required><br><br>
+      <label for="time">Select Time:</label>
+      <input type="time" id="time"><br><br>
 
-            <label for="email">Your Email:</label>
-            <input type="email" id="email" required><br><br>
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" required><br><br>
 
-            <button type="button" id="book-now-btn">Book Now</button>
-            <div id="message" class="hidden"></div>
-        </form>
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" required><br><br>
 
-        <h2>Current Bookings</h2>
-        <ul id="availability-list">
-            <li>Loading availability...</li>
-        </ul>
-    </div>
+      <button type="button" id="submit-booking-btn">Book Now</button>
+      <div id="message" class="hidden"></div>
+    </form>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
