@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('check-availability-btn').addEventListener('click', checkAvailability);
+    document.getElementById('book-now-btn').addEventListener('click', submitBooking);
     fetchAvailability();
 });
 
@@ -12,7 +14,6 @@ function checkAvailability() {
         document.getElementById('booking-form').classList.remove('hidden');
         document.getElementById('book-now-title').classList.remove('hidden');
         document.getElementById('availability-form').classList.add('hidden');
-
         document.getElementById('date').value = date;
         document.getElementById('time').value = time;
     } else {
@@ -33,7 +34,9 @@ async function submitBooking() {
     try {
         const response = await fetch('https://bookingenginebackend.onrender.com/api/bookings', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(bookingData)
         });
 
@@ -44,7 +47,7 @@ async function submitBooking() {
             messageDiv.textContent = data.message;
             messageDiv.classList.remove('hidden');
             fetchAvailability();
-            document.querySelector('.booking-form').reset();
+            document.getElementById('booking-form').reset();
             setTimeout(() => {
                 messageDiv.classList.add('hidden');
             }, 3000);
