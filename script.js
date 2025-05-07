@@ -1,14 +1,14 @@
 window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('check-availability-btn').addEventListener('click', checkAvailability);
     document.getElementById('book-now-btn').addEventListener('click', submitBooking);
     fetchAvailability();
 });
-
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('check-availability-btn').addEventListener('click', checkAvailability);
+});
 function checkAvailability() {
     const date = document.getElementById('check-date').value;
     const time = document.getElementById('check-time').value;
     const messageDiv = document.getElementById('availability-message');
-
     if (date && time) {
         messageDiv.innerHTML = `<p style="color: green;">Slot available for ${date} at ${time}!</p>`;
         document.getElementById('booking-form').classList.remove('hidden');
@@ -20,7 +20,6 @@ function checkAvailability() {
         messageDiv.innerHTML = `<p style="color: red;">Please select both date and time.</p>`;
     }
 }
-
 async function submitBooking() {
     const service = document.getElementById('service').value;
     const date = document.getElementById('date').value;
@@ -28,9 +27,7 @@ async function submitBooking() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const messageDiv = document.getElementById('message');
-
     const bookingData = { service, date, time, name, email };
-
     try {
         const response = await fetch('https://bookingenginebackend.onrender.com/api/bookings', {
             method: 'POST',
@@ -39,9 +36,7 @@ async function submitBooking() {
             },
             body: JSON.stringify(bookingData)
         });
-
         const data = await response.json();
-
         if (response.ok) {
             messageDiv.className = 'success';
             messageDiv.textContent = data.message;
@@ -63,15 +58,12 @@ async function submitBooking() {
         messageDiv.classList.remove('hidden');
     }
 }
-
 async function fetchAvailability() {
     const availabilityList = document.getElementById('availability-list');
     availabilityList.innerHTML = '<li>Loading availability...</li>';
-
     try {
         const response = await fetch('https://bookingenginebackend.onrender.com/api/bookings/availability');
         const data = await response.json();
-
         if (response.ok && data.availability && data.availability.length > 0) {
             availabilityList.innerHTML = '';
             data.availability.forEach(item => {
