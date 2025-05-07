@@ -70,6 +70,42 @@ async function fetchAvailabilit() {
         availabilityList.innerHTML = '<li>Failed to load availability.</li>';
     }
 
+    function checkAvailability() {
+    const date = document.getElementById('check-date').value;
+    const time = document.getElementById('check-time').value;
+    const messageDiv = document.getElementById('availability-message');
+
+    if (date && time) {
+        // Simulate availability check (replace with real logic or API)
+        messageDiv.innerHTML = `<p style="color: green;">Slot available for ${date} at ${time}!</p>`;
+
+        // Show booking form and hide check availability form
+        document.getElementById('booking-form').classList.remove('hidden');
+        document.getElementById('book-now-title').classList.remove('hidden');
+        document.getElementById('availability-form').classList.add('hidden');
+
+        // Auto-fill the date and time in booking form
+        document.getElementById('date').value = date;
+        document.getElementById('time').value = time;
+    } else {
+        messageDiv.innerHTML = `<p style="color: red;">Please select both date and time.</p>`;
+    }
+}
+
+function submitBooking() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+
+    if (name && email) {
+        document.getElementById('message').classList.remove('hidden');
+        document.getElementById('message').innerHTML = `<p style="color: green;">Booking confirmed for ${name}!</p>`;
+    } else {
+        document.getElementById('message').classList.remove('hidden');
+        document.getElementById('message').innerHTML = `<p style="color: red;">Please fill out all required fields.</p>`;
+    }
+}
+
+
 
 // Fetch initial availability when the page loads
 document.addEventListener('DOMContentLoaded', fetchAvailability);
