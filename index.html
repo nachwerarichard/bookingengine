@@ -9,6 +9,12 @@
         .hidden {
             display: none;
         }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +55,11 @@
             <button type="button" onclick="submitBooking()">Book Now</button>
             <div id="message" class="hidden"></div>
         </form>
+
+        <h2>Current Bookings</h2>
+        <ul id="availability-list">
+            <li>Loading availability...</li>
+        </ul>
     </div>
 
     <script src="script.js"></script>
