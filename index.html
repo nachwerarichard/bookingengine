@@ -7,7 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+     <div class="container">
+        <div class="availability-check-form">
+    <h2>Check Availability</h2>
+    <label for="availability-date">Select Date:</label>
+    <input type="date" id="availability-date"><br><br>
+
+    <label for="availability-time">Select Time:</label>
+    <input type="time" id="availability-time"><br><br>
+
+    <button type="button" onclick="checkAvailability()">Check Availability</button>
+    <div id="availability-message"></div>
+   </div>
         <h1>Book Now</h1>
         <form class="booking-form">  <label for="service">Select Service:</label>
             <select id="service">
