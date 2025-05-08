@@ -4,6 +4,7 @@ const editModal = document.getElementById('edit-booking-modal');
 
 // Get open buttons
 const openCreateBtn = document.getElementById('open-create-modal');
+const openEditBtn = document.getElementById('open-edit-modal');
 
 // Get close buttons
 const closeCreateBtn = document.getElementById('close-create-modal');
@@ -14,7 +15,7 @@ openCreateBtn.addEventListener('click', () => {
   createModal.style.display = 'block';
 });
 
-openCreateBtn.addEventListener('click', () => {
+openEditBtn.addEventListener('click', () => {
   editModal.style.display = 'block';
 });
 
