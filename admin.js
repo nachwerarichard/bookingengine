@@ -240,3 +240,41 @@ function attachEventListenersToButtons() {
 document.addEventListener('DOMContentLoaded', () => {
     fetchBookings();
 });
+document.addEventListener('DOMContentLoaded', () => {
+    fetchBookings();
+
+    const createForm = document.getElementById('create-form');
+    createForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const newBooking = {
+            service: document.getElementById('create-service').value,
+            date: document.getElementById('create-date').value,
+            time: document.getElementById('create-time').value,
+            name: document.getElementById('create-name').value,
+            email: document.getElementById('create-email').value,
+        };
+
+        try {
+            const response = await fetch(API_BASE_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newBooking)
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                showMessage('Booking created successfully!', 'success', 'create-message');
+                createForm.reset();
+                fetchBookings();
+            } else {
+                showMessage(data.message || 'Failed to create booking.', 'error', 'create-message');
+            }
+        } catch (error) {
+            showMessage('Error creating booking. Please check your network.', 'error', 'create-message');
+        }
+    });
+});
