@@ -19,15 +19,18 @@ openEditBtn.addEventListener('click', () => {
   editModal.style.display = 'block';
 });
 
-function openEditModal(data) {
+
+
+function openEditModal(booking) {
+  const editModal = document.getElementById('edit-booking-modal');
   editModal.style.display = 'block';
-  // Fill form fields with existing booking data
-  document.getElementById('edit-id').value = data.id;
-  document.getElementById('edit-service').value = data.service;
-  document.getElementById('edit-date').value = data.date;
-  document.getElementById('edit-time').value = data.time;
-  document.getElementById('edit-name').value = data.name;
-  document.getElementById('edit-email').value = data.email;
+
+  document.getElementById('edit-id').value = booking.id;
+  document.getElementById('edit-service').value = booking.service;
+  document.getElementById('edit-date').value = booking.date;
+  document.getElementById('edit-time').value = booking.time;
+  document.getElementById('edit-name').value = booking.name;
+  document.getElementById('edit-email').value = booking.email;
 }
 
 // Close modals
