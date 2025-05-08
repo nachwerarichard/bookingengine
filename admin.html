@@ -133,7 +133,14 @@
     </style>
 </head>
 <body>
-
+    <aside class="sidebar">
+    <ul>
+      <li><span>🏠</span> Dashboard</li>
+      <li><span>📖</span> Bookings</li>
+      <li><span>⚙️</span> Settings</li>
+      <li><span>🚪</span> Logout</li>
+    </ul>
+  </aside>
     <div class="container">
         <h1>Booking Engine Admin Dashboard</h1>
 
@@ -150,14 +157,7 @@
     </div>
 
         <div id="dashboard-content" class=" hidden">
-                <aside class="sidebar">
-    <ul>
-      <li><span>🏠</span> Dashboard</li>
-      <li><span>📖</span> Bookings</li>
-      <li><span>⚙️</span> Settings</li>
-      <li><span>🚪</span> Logout</li>
-    </ul>
-  </aside>
+
             <button id="open-create-modal">+ Create New Booking</button>
             <h2>Bookings</h2>
             <table id="bookings-table">
@@ -185,14 +185,7 @@
         <form id="create-form">...</form>
       </div>
     </div>
-             <!-- Edit Booking Modal -->
-    <div id="edit-modal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close-modal" onclick="closeModal('edit-modal')">&times;</span>
-        <h3>Edit Booking</h3>
-        <form id="edit-form">...</form>
-      </div>
-    </div>
+
             <div id="edit-booking-form" class="hidden">
                 <h3>Edit Booking</h3>
                 <form id="edit-form">
