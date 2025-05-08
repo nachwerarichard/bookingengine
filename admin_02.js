@@ -14,6 +14,10 @@ openCreateBtn.addEventListener('click', () => {
   createModal.style.display = 'block';
 });
 
+openCreateBtn.addEventListener('click', () => {
+  editModal.style.display = 'block';
+});
+
 function openEditModal(data) {
   editModal.style.display = 'block';
   // Fill form fields with existing booking data
