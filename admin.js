@@ -67,11 +67,12 @@ async function login() {
             headers: {
                 'Content-Type': 'application/json',
             },
-body: JSON.stringify({
-    username: usernameInput,  //  These keys must match what your backend expects
-    password: passwordInput,
-  }),
-
+           body: JSON.stringify({
+            username: usernameInput,  //  These keys must match what your backend expects
+            password: passwordInput,
+          }),
+         },
+        );
         const data = await response.json();
 
         if (response.ok) {
