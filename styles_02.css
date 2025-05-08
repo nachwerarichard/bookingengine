@@ -37,9 +37,9 @@
 }
 
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
-  z-index: 1000;
+  z-index: 999;
   left: 0;
   top: 0;
   width: 100%;
@@ -52,8 +52,8 @@
   background-color: #fff;
   margin: 10% auto;
   padding: 20px;
-  border-radius: 10px;
-  width: 80%;
+  border-radius: 8px;
+  width: 90%;
   max-width: 500px;
   position: relative;
 }
@@ -61,16 +61,13 @@
 .close {
   color: #aaa;
   position: absolute;
-  right: 15px;
+  right: 20px;
   top: 10px;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;
 }
 
-.close:hover {
-  color: black;
-}
 
       .error {
         color: red;
