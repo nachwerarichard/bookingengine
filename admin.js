@@ -62,36 +62,36 @@ async function login() {
     }
 
     try {
-        const response = await fetch(`${API_BASE_URL}/login`, {  //  Ensure this endpoint matches your backend
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-           body: JSON.stringify({
-            username: usernameInput,  //  These keys must match what your backend expects
-            password: passwordInput,
-          }),
-         },
-        );
-        const data = await response.json();
+  const response = await fetch(`${API_BASE_URL}/login`, {
+    //  Ensure this endpoint matches your backend
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: usernameInput, //  These keys must match what your backend expects
+      password: passwordInput,
+    }),
+  }); // Close the fetch options object here
+  const data = await response.json();
 
-        if (response.ok) {
-            authToken = data.token; // Store the token
-            localStorage.setItem('authToken', data.token); // Persist
-            showMessage('Logged in successfully!', 'success', 'login-message');
-            loginForm.classList.add('hidden');
-            document.getElementById('login-section').classList.add('hidden');
-            document.getElementById('dashboard-content').classList.remove('hidden');
-            fetchBookings(); // Load bookings immediately after successful login
+  if (response.ok) {
+    authToken = data.token; // Store the token
+    localStorage.setItem('authToken', data.token); // Persist
+    showMessage('Logged in successfully!', 'success', 'login-message');
+    loginForm.classList.add('hidden');
+    document.getElementById('login-section').classList.add('hidden');
+    document.getElementById('dashboard-content').classList.remove('hidden');
+    fetchBookings(); // Load bookings immediately after successful login
+  } else {
+    showMessage(data.message || 'Invalid credentials', 'error', 'login-message');
+  }
+} catch (error) {
+  showMessage('Failed to login. Please check your network.', 'error', 'login-message');
+} finally {
+  loginForm.reset();
+}
 
-        } else {
-            showMessage(data.message || 'Invalid credentials', 'error', 'login-message');
-        }
-    } catch (error) {
-        showMessage('Failed to login. Please check your network.', 'error', 'login-message');
-    } finally{
-        loginForm.reset();
-    }
 }
 
 /**
