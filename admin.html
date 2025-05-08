@@ -178,13 +178,7 @@
                     </tr>
                 </tbody>
             </table>
-     <div id="create-modal" class="modal hidden">
-      <div class="modal-content">
-        <span class="close-modal" onclick="closeModal('create-modal')">&times;</span>
-        <h3>Create New Booking</h3>
-        <form id="create-form">...</form>
-      </div>
-    </div>
+
 
             <div id="edit-booking-form" class="hidden">
                 <h3>Edit Booking</h3>
@@ -230,32 +224,7 @@
             </div>
         </div>
     </div>
-<script>
-    // Open and close modal functions
-function openModal(id) {
-  document.getElementById(id).classList.remove('hidden');
-}
 
-function closeModal(id) {
-  document.getElementById(id).classList.add('hidden');
-}
-
-// Open create modal on button click
-document.getElementById('open-create-modal').addEventListener('click', () => {
-  openModal('create-modal');
-});
-
-// Example: When edit button is clicked (you must generate these dynamically for each row)
-document.addEventListener('click', function (e) {
-  if (e.target.classList.contains('edit-button')) {
-    const bookingId = e.target.dataset.id;
-    // Populate edit form with booking data here...
-    document.getElementById('edit-id').value = bookingId;
-    openModal('edit-modal');
-  }
-});
-
-</script>
     <script src="admin.js"></script>
 </body>
 </html>
