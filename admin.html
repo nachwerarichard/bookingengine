@@ -56,10 +56,46 @@
             </table>
 
 
-            <div id="edit-booking-form" class="hidden">
+          <!--  <div id="edit-booking-form" class="hidden">
                 <h3>Edit Booking</h3>
                 <form id="edit-form">
-                    <label for="edit-service">Service:</label>
+
+                </form>
+            </div>-->
+<!-- Create Booking Modal -->
+<div id="create-booking-modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" id="close-create-modal">&times;</span>
+    <h3>Create New Booking</h3>
+    <form id="create-form">
+      <!-- your form fields -->
+        <label for="create-service">Service:</label>
+                    <select id="create-service">
+                        <option value="room">Room Booking</option>
+                        <option value="appointment">Appointment</option>
+                    </select><br><br>
+                    <label for="create-date">Date:</label>
+                    <input type="date" id="create-date" required><br><br>
+                    <label for="create-time">Time:</label>
+                    <input type="time" id="create-time" required><br><br>
+                    <label for="create-name">Name:</label>
+                    <input type="text" id="create-name" required><br><br>
+                    <label for="create-email">Email:</label>
+                    <input type="email" id="create-email" required><br><br>
+                    <button type="submit">Create Booking</button>
+                    <div id="create-message" class="hidden"></div>
+    </form>
+  </div>
+</div>
+
+<!-- Edit Booking Modal -->
+<div id="edit-booking-modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" id="close-edit-modal">&times;</span>
+    <h3>Edit Booking</h3>
+    <form id="edit-form">
+      <!-- your form fields -->
+                            <label for="edit-service">Service:</label>
                     <select id="edit-service">
                         <option value="room">Room Booking</option>
                         <option value="appointment">Appointment</option>
@@ -75,32 +111,21 @@
                     <input type="hidden" id="edit-id">
                     <button type="submit">Save Changes</button>
                     <div id="edit-message" class="hidden"></div>
-                </form>
-            </div>
+    </form>
+  </div>
+</div>
 
-            <div id="create-booking-form">
+           <!-- <div id="create-booking-form">
                 <h3>Create New Booking</h3>
                 <form id="create-form">
-                    <label for="create-service">Service:</label>
-                    <select id="create-service">
-                        <option value="room">Room Booking</option>
-                        <option value="appointment">Appointment</option>
-                    </select><br><br>
-                    <label for="create-date">Date:</label>
-                    <input type="date" id="create-date" required><br><br>
-                    <label for="create-time">Time:</label>
-                    <input type="time" id="create-time" required><br><br>
-                    <label for="create-name">Name:</label>
-                    <input type="text" id="create-name" required><br><br>
-                    <label for="create-email">Email:</label>
-                    <input type="email" id="create-email" required><br><br>
-                    <button type="submit">Create Booking</button>
-                    <div id="create-message" class="hidden"></div>
+                    
                 </form>
-            </div>
+            </div>-->
         </div>
     </div>
 
     <script src="admin.js"></script>
+    <script src="admin_02.js"></script>
+
 </body>
 </html>
