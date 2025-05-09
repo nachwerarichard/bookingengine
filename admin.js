@@ -343,32 +343,57 @@ function attachEventListenersToButtons() {
 document.addEventListener('DOMContentLoaded', () => {
     fetchBookings();
 });
+async function editBooking(bookingId) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/bookings/${bookingId}`);
+    const booking = await res.json();
 
-function editBooking(bookingId) {
-    // Find the row of the clicked edit button
-    const button = document.querySelector(`button.edit-button[data-id="${bookingId}"]`);
-    const row = button.closest('tr');
-    const cells = row.querySelectorAll('td');
+    document.getElementById('edit-id').value = booking._id;
+    document.getElementById('edit-service').value = booking.service;
+    document.getElementById('edit-date').value = booking.date.split('T')[0]; // YYYY-MM-DD
+    document.getElementById('edit-time').value = booking.time;
+    document.getElementById('edit-name').value = booking.name;
+    document.getElementById('edit-email').value = booking.email;
 
-    // Extract booking data from table cells
-    const service = cells[1].textContent;
-    const dateParts = cells[2].textContent.split('/'); // e.g., "05/09/2025"
-    const date = `${dateParts[2]}-${dateParts[1].padStart(2, '0')}-${dateParts[0].padStart(2, '0')}`; // Convert to "YYYY-MM-DD"
-    const time = cells[3].textContent;
-    const name = cells[4].textContent;
-    const email = cells[5].textContent;
+    document.getElementById('preview-section').style.display = 'block';
 
-    // Fill the modal form with booking data
-    document.getElementById('edit-id').value = bookingId;
-    document.getElementById('edit-service').value = service;
-    document.getElementById('edit-date').value = date;
-    document.getElementById('edit-time').value = time;
-    document.getElementById('edit-name').value = name;
-    document.getElementById('edit-email').value = email;
-
-    // Show the modal
-    document.getElementById('edit-modal').style.display = 'block';
+  } catch (err) {
+    console.error('Failed to fetch booking:', err);
+  }
 }
+
+document.getElementById('edit-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const id = document.getElementById('edit-id').value;
+
+  const updatedBooking = {
+    service: document.getElementById('edit-service').value,
+    date: document.getElementById('edit-date').value,
+    time: document.getElementById('edit-time').value,
+    name: document.getElementById('edit-name').value,
+    email: document.getElementById('edit-email').value
+  };
+
+  try {
+    await fetch(`${API_BASE_URL}/bookings/${id}`, {
+      method: 'PUT', // or 'PATCH'
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(updatedBooking)
+    });
+
+    alert('Booking updated!');
+    document.getElementById('preview-section').style.display = 'none';
+    fetchBookings(); // Refresh the table
+  } catch (err) {
+    console.error('Failed to update booking:', err);
+  }
+});
+document.getElementById('cancel-edit').addEventListener('click', () => {
+  document.getElementById('preview-section').style.display = 'none';
+});
 
 
     const createForm = document.getElementById('create-form');
