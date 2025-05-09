@@ -104,9 +104,15 @@ function attachEventListenersToButtons() {
     });
 }
 
-document.getElementById('close-modal').addEventListener('click', () => {
-    document.getElementById('edit-modal').style.display = 'none';
+document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('close-modal');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            document.getElementById('edit-modal').style.display = 'none';
+        });
+    }
 });
+
 
 
 // Utility to format the displayed date (e.g. "5/9/2025") to "2025-05-09" for input value
