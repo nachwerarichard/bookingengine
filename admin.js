@@ -105,7 +105,7 @@ function attachEventListenersToButtons() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const closeBtn = document.getElementById('close-modal');
+    const closeBtn = document.getElementById('close-edit-modal');
     if (closeBtn) {
         closeBtn.addEventListener('click', () => {
             document.getElementById('edit-modal').style.display = 'none';
