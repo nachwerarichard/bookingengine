@@ -48,6 +48,19 @@
                 </tbody>
         </table>
 
+<div id="edit-modal" class="modal " style="display:none;">
+    <form id="edit-form">
+        <input type="hidden" id="edit-id">
+        <label>Service: <input type="text" id="edit-service"></label><br>
+        <label>Date: <input type="date" id="edit-date"></label><br>
+        <label>Time: <input type="time" id="edit-time"></label><br>
+        <label>Name: <input type="text" id="edit-name"></label><br>
+        <label>Email: <input type="email" id="edit-email"></label><br>
+        <button type="submit">Save Changes</button>
+        <button type="button" id="cancel-edit">Cancel</button>
+    </form>
+    <div id="edit-message" class="message hidden"></div>
+</div>
 
          
 
