@@ -29,9 +29,10 @@
 }
 
 .container {
-  margin-left: 200px;
+  margin-left: 100px;
   padding: 20px;
-  width: cal(100%-200px);
+  width: 80%;
+  display:flex;
 }
 
 /* Hides any element with this class */
