@@ -81,34 +81,33 @@ async function fetchBookings() {
     }
 }
 
-function attachEventListenersToButtons() {
-    const editButtons = document.querySelectorAll('.edit-button');
-    
-    editButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const bookingId = e.target.dataset.id;
-            const row = e.target.closest('tr');
-            const cells = row.querySelectorAll('td');
+function editBooking(bookingId) {
+    const button = document.querySelector(`button.edit-button[data-id="${bookingId}"]`);
+    const row = button.closest('tr');
+    const cells = row.querySelectorAll('td');
 
-            // Populate the form
-            document.getElementById('edit-id').value = bookingId;
-            document.getElementById('edit-service').value = cells[1].textContent;
-            document.getElementById('edit-date').value = formatDateForInput(cells[2].textContent);
-            document.getElementById('edit-time').value = cells[3].textContent;
-            document.getElementById('edit-name').value = cells[4].textContent;
-            document.getElementById('edit-email').value = cells[5].textContent;
+    const service = cells[1].textContent;
+    const dateParts = cells[2].textContent.split('/');
+    const date = `${dateParts[2]}-${dateParts[1].padStart(2, '0')}-${dateParts[0].padStart(2, '0')}`;
+    const time = cells[3].textContent;
+    const name = cells[4].textContent;
+    const email = cells[5].textContent;
 
-            // Show the modal
-            document.getElementById('edit-modal').style.display = 'block';
-        });
-    });
+    document.getElementById('edit-id').value = bookingId;
+    document.getElementById('edit-service').value = service;
+    document.getElementById('edit-date').value = date;
+    document.getElementById('edit-time').value = time;
+    document.getElementById('edit-name').value = name;
+    document.getElementById('edit-email').value = email;
+
+    document.getElementById('edit-modal-overlay').style.display = 'flex';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('close-edit-modal');
     if (closeBtn) {
         closeBtn.addEventListener('click', () => {
-            document.getElementById('edit-modal').style.display = 'none';
+            document.getElementById('edit-modal-overlay').style.display = 'none';
         });
     }
 });
