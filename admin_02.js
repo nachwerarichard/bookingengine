@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeCreateBtn = document.getElementById('close-create-modal');
 
   openCreateBtn.addEventListener('click', () => {
-    createModal.classList.remove('hidden');
+    createModal.style.display="block";
   });
 
   closeCreateBtn.addEventListener('click', () => {
