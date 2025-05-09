@@ -241,8 +241,7 @@ function attachEventListenersToButtons() {
 document.addEventListener('DOMContentLoaded', () => {
     fetchBookings();
 });
-document.addEventListener('DOMContentLoaded', () => {
-    fetchBookings();
+
 
     const createForm = document.getElementById('create-form');
     createForm.addEventListener('submit', async (event) => {
