@@ -103,7 +103,7 @@
   </table>
 
   <!-- Preview/Edit Panel -->
-  <div id="preview-section" style="flex: 1; display: none; border: 1px solid #ccc; padding: 20px; max-width: 300px;">
+ <!-- <div id="preview-section" style="flex: 1; display: none; border: 1px solid #ccc; padding: 20px; max-width: 300px;">
     <h3>Edit Booking</h3>
     <form id="edit-form">
       <input type="hidden" id="edit-id">
@@ -116,6 +116,35 @@
       <button type="button" id="cancel-edit">Cancel</button>
     </form>
   </div>
+</div>-->
+<!-- Add this somewhere to the right of your table, maybe in a flex container -->
+<div id="preview-section" style="display: none; border: 1px solid #ccc; padding: 1rem; margin-left: 1rem; width: 300px;">
+  <form id="edit-form">
+    <input type="hidden" id="edit-id">
+    
+    <label>Service:<br>
+      <input type="text" id="edit-service" required>
+    </label><br><br>
+
+    <label>Date:<br>
+      <input type="date" id="edit-date" required>
+    </label><br><br>
+
+    <label>Time:<br>
+      <input type="time" id="edit-time" required>
+    </label><br><br>
+
+    <label>Name:<br>
+      <input type="text" id="edit-name" required>
+    </label><br><br>
+
+    <label>Email:<br>
+      <input type="email" id="edit-email" required>
+    </label><br><br>
+
+    <button type="submit">Save</button>
+    <button type="button" id="cancel-edit">Cancel</button>
+  </form>
 </div>
 
 <!-- Edit Booking Modal -->
