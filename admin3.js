@@ -1,3 +1,5 @@
+const ADMIN_LOGIN_URL = 'https://bookingenginebackend.onrender.com/api/admin/login'; // adjust to your actual endpoint
+
 // Open and fill the edit modal
 function openEditModal(booking) {
   document.getElementById('edit-id').value = booking._id;
