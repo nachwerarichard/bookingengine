@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('', () => {
   const createModal = document.getElementById('create-booking-modal');
   const openCreateBtn = document.getElementById('open-create-modal');
   const closeCreateBtn = document.getElementById('close-create-modal');
