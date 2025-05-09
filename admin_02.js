@@ -1,9 +1,9 @@
 const createModal = document.getElementById('create-booking-modal');
-const editModal = document.getElementById('edit-booking-modal');
+//const editModal = document.getElementById('edit-booking-modal');
 
 const openCreateBtn = document.getElementById('open-create-modal');
 const closeCreateBtn = document.getElementById('close-create-modal');
-const closeEditBtn = document.getElementById('close-edit-modal');
+//const closeEditBtn = document.getElementById('close-edit-modal');
 
 // Open Create Modal
 openCreateBtn.addEventListener('click', () => {
@@ -14,13 +14,13 @@ openCreateBtn.addEventListener('click', () => {
 closeCreateBtn.addEventListener('click', () => {
   createModal.style.display = 'none';
 });
-closeEditBtn.addEventListener('click', () => {
-  editModal.style.display = 'none';
+//closeEditBtn.addEventListener('click', () => {
+ // editModal.style.display = 'none';
 });
 
 window.addEventListener('click', (e) => {
   if (e.target === createModal) createModal.style.display = 'none';
-  if (e.target === editModal) editModal.style.display = 'none';
+ // if (e.target === editModal) editModal.style.display = 'none';
 });
 
 // Function to open Edit Modal with booking data
