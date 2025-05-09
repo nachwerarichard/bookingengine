@@ -24,16 +24,16 @@ window.addEventListener('click', (e) => {
 });
 
 // Function to open Edit Modal with booking data
-function openEditModal(booking) {
-  document.getElementById('edit-id').value = booking.id;
-  document.getElementById('edit-service').value = booking.service;
-  document.getElementById('edit-date').value = booking.date;
-  document.getElementById('edit-time').value = booking.time;
-  document.getElementById('edit-name').value = booking.name;
-  document.getElementById('edit-email').value = booking.email;
-  editModal.style.display = 'block';
+//function openEditModal(booking) {
+ // document.getElementById('edit-id').value = booking.id;
+ // document.getElementById('edit-service').value = booking.service;
+  //document.getElementById('edit-date').value = booking.date;
+  //document.getElementById('edit-time').value = booking.time;
+  //document.getElementById('edit-name').value = booking.name;
+ // document.getElementById('edit-email').value = booking.email;
+ // editModal.style.display = 'block';
 }
-
+//
 // Example usage: Add Edit button handler in your table rendering logic
 // Assume 'booking' is an object with relevant data
 /*
