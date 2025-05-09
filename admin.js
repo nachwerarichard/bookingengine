@@ -120,7 +120,7 @@ function formatDateForInput(dateString) {
  * @param {string} id - The ID of the booking to edit.
  */
 
-/*async function editBooking(id) {
+async function editBooking(id) {
     const editForm = document.getElementById('edit-form');
     const editIdInput = document.getElementById('edit-id');
 
