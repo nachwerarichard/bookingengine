@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage('Error creating booking. Please check your network.', 'error', 'create-message');
         }
     });
-});
+
 document.getElementById('admin-login-form').addEventListener('submit', async function (e) {
   e.preventDefault();
 
