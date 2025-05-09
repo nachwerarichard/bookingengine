@@ -81,7 +81,7 @@ async function fetchBookings() {
     }
 }
 
-function editBooking(bookingId) {
+/*function editBooking(bookingId) {
     const button = document.querySelector(`button.edit-button[data-id="${bookingId}"]`);
     const row = button.closest('tr');
     const cells = row.querySelectorAll('td');
@@ -113,6 +113,67 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+function attachEventListenersToButtons() {
+  document.querySelectorAll('.edit-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const bookingId = button.getAttribute('data-id');
+      const row = button.closest('tr');
+      editBooking(bookingId, row);
+    });
+  });
+}*/
+
+function editBooking(bookingId, row) {
+  // Extract values from the row
+  const service = row.children[1].textContent;
+  const date = row.children[2].textContent;
+  const time = row.children[3].textContent;
+  const name = row.children[4].textContent;
+  const email = row.children[5].textContent;
+
+  // Populate the preview section
+  document.getElementById('edit-id').value = bookingId;
+  document.getElementById('edit-service').value = service;
+  document.getElementById('edit-date').value = new Date(date).toISOString().split('T')[0];
+  document.getElementById('edit-time').value = time;
+  document.getElementById('edit-name').value = name;
+  document.getElementById('edit-email').value = email;
+
+  // Show the section
+  document.getElementById('preview-section').style.display = 'block';
+}
+
+// Save button
+document.getElementById('edit-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const updatedBooking = {
+    id: document.getElementById('edit-id').value,
+    service: document.getElementById('edit-service').value,
+    date: document.getElementById('edit-date').value,
+    time: document.getElementById('edit-time').value,
+    name: document.getElementById('edit-name').value,
+    email: document.getElementById('edit-email').value,
+  };
+
+  try {
+    await fetch(`${API_BASE_URL}/admin/${updatedBooking.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updatedBooking)
+    });
+    alert('Booking updated!');
+    fetchBookings(); // reload updated data
+    document.getElementById('preview-section').style.display = 'none';
+  } catch (err) {
+    alert('Error saving booking.');
+  }
+});
+
+// Cancel button
+document.getElementById('cancel-edit').addEventListener('click', () => {
+  document.getElementById('preview-section').style.display = 'none';
+});
 
 
 // Utility to format the displayed date (e.g. "5/9/2025") to "2025-05-09" for input value
