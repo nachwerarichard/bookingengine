@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   closeCreateBtn.addEventListener('click', () => {
-    createModal.classList.add('hidden');
+    createModal.style.display="none";
   });
 
   window.addEventListener('click', (e) => {
