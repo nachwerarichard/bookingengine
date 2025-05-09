@@ -1,5 +1,4 @@
 const API_BASE_URL = 'https://bookingenginebackend.onrender.com/api/bookings'; // Adjust if needed
-const ADMIN_LOGIN_URL = 'https://bookingenginebackend.onrender.com/api/admin/login'; // adjust to your actual endpoint
 
 // --- Utility Functions ---
 
@@ -81,90 +80,71 @@ async function fetchBookings() {
     }
 }
 
-
-function attachEventListenersToButtons() {
-    document.querySelectorAll('.edit-button').forEach(button => {
-        button.addEventListener('click', async () => {
-            const row = button.closest('tr');
-            const id = button.dataset.id;
-
-            // Get current data from row
-            const cells = row.querySelectorAll('td');
-            const booking = {
-                _id: cells[0].textContent,
-                service: cells[1].textContent,
-                date: new Date(cells[2].textContent).toISOString().split('T')[0],
-                time: cells[3].textContent,
-                name: cells[4].textContent,
-                email: cells[5].textContent,
-            };
-
-            // Replace row with editable inputs
-            row.innerHTML = `
-                <td>${booking._id}</td>
-                <td><input type="text" value="${booking.service}"></td>
-                <td><input type="date" value="${booking.date}"></td>
-                <td><input type="time" value="${booking.time}"></td>
-                <td><input type="text" value="${booking.name}"></td>
-                <td><input type="email" value="${booking.email}"></td>
-                <td>
-                    <button class="save-button" data-id="${booking._id}">Save</button>
-                    <button class="cancel-button">Cancel</button>
-                </td>
-            `;
-
-            row.querySelector('.save-button').addEventListener('click', async () => {
-                const inputs = row.querySelectorAll('input');
-                const updatedBooking = {
-                    service: inputs[0].value,
-                    date: inputs[1].value,
-                    time: inputs[2].value,
-                    name: inputs[3].value,
-                    email: inputs[4].value,
-                };
-
-                try {
-                    const response = await fetch(`${API_BASE_URL}/admin/${id}`, {
-                        method: 'PUT',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(updatedBooking),
-                    });
-
-                    if (!response.ok) throw new Error('Failed to update booking');
-
-                    // Re-fetch bookings to update the UI
-                    fetchBookings();
-                } catch (error) {
-                    alert('Error saving booking. Try again.');
-                    console.error(error);
-                }
-            });
-
-            row.querySelector('.cancel-button').addEventListener('click', () => {
-                // Re-fetch bookings to revert changes
-                fetchBookings();
-            });
-        });
-    });
-
-   
-}
-
-
-// Save button
-
-
-// Utility to format the displayed date (e.g. "5/9/2025") to "2025-05-09" for input value
-function formatDateForInput(dateString) {
-    const [month, day, year] = new Date(dateString).toLocaleDateString().split('/');
-    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
-}
-
 /**
  * Handles editing a booking.
  * @param {string} id - The ID of the booking to edit.
  */
+async function editBooking(id) {
+    const editForm = document.getElementById('edit-form');
+    const editIdInput = document.getElementById('edit-id');
 
+    try {
+        const booking = await fetchData(`${API_BASE_URL}/${id}`);
+
+        editIdInput.value = booking._id;
+        document.getElementById('edit-service').value = booking.service;
+        document.getElementById('edit-date').value = new Date(booking.date).toISOString().split('T')[0];
+        document.getElementById('edit-time').value = booking.time;
+        document.getElementById('edit-name').value = booking.name;
+        document.getElementById('edit-email').value = booking.email;
+
+        document.getElementById('edit-booking-form').classList.remove('hidden');
+        editForm.removeEventListener('submit', handleEditSubmit);
+        editForm.addEventListener('submit', handleEditSubmit);
+
+    } catch (error) {
+        showMessage('Failed to fetch booking details for editing.', 'error', 'edit-message');
+    }
+}
+
+/**
+ * Handles the submission of the edit booking form.
+ * @param {Event} event - The form submit event.
+ */
+async function handleEditSubmit(event) {
+    event.preventDefault();
+
+    const editId = document.getElementById('edit-id').value;
+    const updatedBookingData = {
+        service: document.getElementById('edit-service').value,
+        date: document.getElementById('edit-date').value,
+        time: document.getElementById('edit-time').value,
+        name: document.getElementById('edit-name').value,
+        email: document.getElementById('edit-email').value,
+    };
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/${editId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedBookingData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            showMessage('Booking updated successfully!', 'success', 'edit-message');
+            document.getElementById('edit-booking-form').classList.add('hidden');
+            fetchBookings();
+        } else {
+            showMessage(data.message || 'Failed to update booking.', 'error', 'edit-message');
+        }
+    } catch (error) {
+        showMessage('Error updating booking. Please check your network.', 'error', 'edit-message');
+    }
+}
 
 /**
  * Handles deleting a booking.
@@ -241,7 +221,12 @@ async function createBookingManual() {
  * Attaches event listeners to edit and delete buttons.
  */
 function attachEventListenersToButtons() {
-    
+    document.querySelectorAll('.edit-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const bookingId = button.getAttribute('data-id');
+            editBooking(bookingId);
+        });
+    });
 
     document.querySelectorAll('.delete-button').forEach(button => {
         button.addEventListener('click', () => {
@@ -255,7 +240,8 @@ function attachEventListenersToButtons() {
 document.addEventListener('DOMContentLoaded', () => {
     fetchBookings();
 });
-
+document.addEventListener('DOMContentLoaded', () => {
+    fetchBookings();
 
     const createForm = document.getElementById('create-form');
     createForm.addEventListener('submit', async (event) => {
@@ -291,35 +277,6 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage('Error creating booking. Please check your network.', 'error', 'create-message');
         }
     });
-
-document.getElementById('admin-login-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-
-  try {
-    const response = await fetch(ADMIN_LOGIN_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ username, password })
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      // Hide login, show dashboard
-      document.getElementById('login-form').classList.add('hidden');
-      document.getElementById('dashboard-content').classList.remove('hidden');
-      fetchBookings(); // load bookings
-    } else {
-      showMessage(data.message || 'Login failed.', 'error', 'login-message');
-    }
-  } catch (err) {
-    showMessage('Network error during login.', 'error', 'login-message');
-  }
 });
 
 
