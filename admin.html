@@ -130,18 +130,22 @@
   </div>
 </div>-->
 
-<div id="edit-modal" class="modal" style="display: none; position: relative;">
-  <button id="close-edit-modal" style="position: absolute; top: 5px; right: 10px;">❌</button>
-  <form id="edit-form">
-    <input type="hidden" id="edit-id">
-    <label>Service: <select id="edit-service"></select></label>
-    <label>Date: <input type="date" id="edit-date" required></label>
-    <label>Time: <input type="time" id="edit-time" required></label>
-    <label>Name: <input type="text" id="edit-name" required></label>
-    <label>Email: <input type="email" id="edit-email" required></label>
-    <button type="submit">Save Changes</button>
-  </form>
+<!-- Modal Overlay -->
+<div id="edit-modal-overlay" style="display: none;">
+  <div id="edit-modal" class="modal-content">
+    <button id="close-edit-modal" class="close-button">❌</button>
+    <form id="edit-form">
+      <input type="hidden" id="edit-id">
+      <label>Service: <select id="edit-service"></select></label>
+      <label>Date: <input type="date" id="edit-date" required></label>
+      <label>Time: <input type="time" id="edit-time" required></label>
+      <label>Name: <input type="text" id="edit-name" required></label>
+      <label>Email: <input type="email" id="edit-email" required></label>
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
 </div>
+
             
 <!-- Create Booking Modal -->
 <!--<div id="create-booking-modal" class="modal hidden">
