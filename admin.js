@@ -277,6 +277,32 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchBookings();
 });
 
+function editBooking(bookingId) {
+    // Find the row of the clicked edit button
+    const button = document.querySelector(`button.edit-button[data-id="${bookingId}"]`);
+    const row = button.closest('tr');
+    const cells = row.querySelectorAll('td');
+
+    // Extract booking data from table cells
+    const service = cells[1].textContent;
+    const dateParts = cells[2].textContent.split('/'); // e.g., "05/09/2025"
+    const date = `${dateParts[2]}-${dateParts[1].padStart(2, '0')}-${dateParts[0].padStart(2, '0')}`; // Convert to "YYYY-MM-DD"
+    const time = cells[3].textContent;
+    const name = cells[4].textContent;
+    const email = cells[5].textContent;
+
+    // Fill the modal form with booking data
+    document.getElementById('edit-id').value = bookingId;
+    document.getElementById('edit-service').value = service;
+    document.getElementById('edit-date').value = date;
+    document.getElementById('edit-time').value = time;
+    document.getElementById('edit-name').value = name;
+    document.getElementById('edit-email').value = email;
+
+    // Show the modal
+    document.getElementById('edit-modal').style.display = 'block';
+}
+
 
     const createForm = document.getElementById('create-form');
     createForm.addEventListener('submit', async (event) => {
