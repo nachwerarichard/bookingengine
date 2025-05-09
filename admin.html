@@ -89,7 +89,7 @@
 </div>
 
 <!-- Edit Booking Modal -->
-<div id="edit-booking-modal" class="modal hidden">
+<!--<div id="edit-booking-modal" class="modal hidden">
   <div class="modal-content">
     <span id="close-edit-modal" class="close">&times;</span>
     <h3>Edit Booking</h3>
@@ -112,6 +112,19 @@
       <div id="edit-message" class="hidden"></div>
     </form>
   </div>
+</div> -->
+
+            <!-- Edit Booking Modal -->
+<div id="edit-modal" style="display: none;">
+  <form id="edit-form">
+    <input type="hidden" id="edit-id">
+    <label>Service: <select id="edit-service"></select></label>
+    <label>Date: <input type="date" id="edit-date" required></label>
+    <label>Time: <input type="time" id="edit-time" required></label>
+    <label>Name: <input type="text" id="edit-name" required></label>
+    <label>Email: <input type="email" id="edit-email" required></label>
+    <button type="submit">Save Changes</button>
+  </form>
 </div>
 
             
