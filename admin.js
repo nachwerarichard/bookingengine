@@ -1,4 +1,5 @@
 const API_BASE_URL = 'https://bookingenginebackend.onrender.com/api/bookings'; // Adjust if needed
+const ADMIN_LOGIN_URL = 'https://bookingenginebackend.onrender.com/api/admin/login'; // adjust to your actual endpoint
 
 // --- Utility Functions ---
 
@@ -278,5 +279,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+document.getElementById('admin-login-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
 
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
 
+  try {
+    const response = await fetch(ADMIN_LOGIN_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username, password })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Hide login, show dashboard
+      document.getElementById('login-form').classList.add('hidden');
+      document.getElementById('dashboard-content').classList.remove('hidden');
+      fetchBookings(); // load bookings
+    } else {
+      showMessage(data.message || 'Login failed.', 'error', 'login-message');
+    }
+  } catch (err) {
+    showMessage('Network error during login.', 'error', 'login-message');
+  }
+});
