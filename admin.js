@@ -81,11 +81,46 @@ async function fetchBookings() {
     }
 }
 
+function attachEventListenersToButtons() {
+    const editButtons = document.querySelectorAll('.edit-button');
+    
+    editButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const bookingId = e.target.dataset.id;
+            const row = e.target.closest('tr');
+            const cells = row.querySelectorAll('td');
+
+            // Populate the form
+            document.getElementById('edit-id').value = bookingId;
+            document.getElementById('edit-service').value = cells[1].textContent;
+            document.getElementById('edit-date').value = formatDateForInput(cells[2].textContent);
+            document.getElementById('edit-time').value = cells[3].textContent;
+            document.getElementById('edit-name').value = cells[4].textContent;
+            document.getElementById('edit-email').value = cells[5].textContent;
+
+            // Show the modal
+            document.getElementById('edit-modal').style.display = 'block';
+        });
+    });
+}
+
+document.getElementById('close-modal').addEventListener('click', () => {
+    document.getElementById('edit-modal').style.display = 'none';
+});
+
+
+// Utility to format the displayed date (e.g. "5/9/2025") to "2025-05-09" for input value
+function formatDateForInput(dateString) {
+    const [month, day, year] = new Date(dateString).toLocaleDateString().split('/');
+    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+}
+
 /**
  * Handles editing a booking.
  * @param {string} id - The ID of the booking to edit.
  */
-async function editBooking(id) {
+
+/*async function editBooking(id) {
     const editForm = document.getElementById('edit-form');
     const editIdInput = document.getElementById('edit-id');
 
