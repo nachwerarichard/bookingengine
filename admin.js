@@ -82,6 +82,73 @@ async function fetchBookings() {
 }
 
 
+function attachEventListenersToButtons() {
+    document.querySelectorAll('.edit-button').forEach(button => {
+        button.addEventListener('click', async () => {
+            const row = button.closest('tr');
+            const id = button.dataset.id;
+
+            // Get current data from row
+            const cells = row.querySelectorAll('td');
+            const booking = {
+                _id: cells[0].textContent,
+                service: cells[1].textContent,
+                date: new Date(cells[2].textContent).toISOString().split('T')[0],
+                time: cells[3].textContent,
+                name: cells[4].textContent,
+                email: cells[5].textContent,
+            };
+
+            // Replace row with editable inputs
+            row.innerHTML = `
+                <td>${booking._id}</td>
+                <td><input type="text" value="${booking.service}"></td>
+                <td><input type="date" value="${booking.date}"></td>
+                <td><input type="time" value="${booking.time}"></td>
+                <td><input type="text" value="${booking.name}"></td>
+                <td><input type="email" value="${booking.email}"></td>
+                <td>
+                    <button class="save-button" data-id="${booking._id}">Save</button>
+                    <button class="cancel-button">Cancel</button>
+                </td>
+            `;
+
+            row.querySelector('.save-button').addEventListener('click', async () => {
+                const inputs = row.querySelectorAll('input');
+                const updatedBooking = {
+                    service: inputs[0].value,
+                    date: inputs[1].value,
+                    time: inputs[2].value,
+                    name: inputs[3].value,
+                    email: inputs[4].value,
+                };
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/admin/${id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(updatedBooking),
+                    });
+
+                    if (!response.ok) throw new Error('Failed to update booking');
+
+                    // Re-fetch bookings to update the UI
+                    fetchBookings();
+                } catch (error) {
+                    alert('Error saving booking. Try again.');
+                    console.error(error);
+                }
+            });
+
+            row.querySelector('.cancel-button').addEventListener('click', () => {
+                // Re-fetch bookings to revert changes
+                fetchBookings();
+            });
+        });
+    });
+
+   
+}
 
 
 // Save button
