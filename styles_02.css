@@ -62,8 +62,9 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  width: 100%;
-        top:30%;
+  top:30%;
+  left:40%;
+  right:40%;
   max-width: 500px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   position: relative;
