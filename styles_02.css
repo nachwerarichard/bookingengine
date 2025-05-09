@@ -29,10 +29,8 @@
 }
 
 .container {
-  margin-left: 100px;
   padding: 20px;
-  width: 80%;
-  
+  width: 100%;
 }
 
 /* Hides any element with this class */
