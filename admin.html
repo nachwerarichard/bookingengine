@@ -6,7 +6,6 @@
     <title>Booking Engine Admin Dashboard</title>
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="styles_02.css"> 
-
 </head>
 <body>
     <aside class="sidebar">
@@ -16,11 +15,11 @@
       <li><span>⚙️</span> Settings</li>
       <li><span>🚪</span> Logout</li>
     </ul>
-  </aside>
+    </aside>
     <div class="container">
         <h1>Booking Engine Admin Dashboard</h1>
 
-       <div id="login-form">
+     <div id="login-form">
       <h2>Admin Login</h2>
       <form id="admin-login-form">
         <label for="username">Username:</label>
@@ -30,13 +29,12 @@
         <button type="submit">Login</button>
         <div id="login-message" class="hidden"></div>
       </form>
-    </div>
+     </div>
 
-        <div id="dashboard-content" class=" hidden">
-
-            <button id="open-create-modal">+ Create New Booking</button>
-            <h2>Bookings</h2>
-            <table id="bookings-table">
+     <div id="dashboard-content" class=" hidden">
+        <button id="open-create-modal">+ Create New Booking</button>
+        <h2>Bookings</h2>
+        <table id="bookings-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -53,7 +51,7 @@
                         <td colspan="6">Loading bookings...</td>
                     </tr>
                 </tbody>
-            </table>
+        </table>
 
 
           <!--  <div id="edit-booking-form" class="hidden">
@@ -64,7 +62,7 @@
             </div>-->
 
             <!-- Create Booking Modal -->
-<div id="create-booking-modal" class="modal">
+        <div id="create-booking-modal" class="modal">
   <div class="modal-content">
     <span id="close-create-modal" class="close">&times;</span>
     <h3>Create New Booking</h3>
@@ -86,7 +84,7 @@
       <div id="create-message" class="hidden"></div>
     </form>
   </div>
-</div>
+        </div>
 
 <!-- Edit Booking Modal -->
 <!--<div id="edit-booking-modal" class="modal hidden">
@@ -115,7 +113,7 @@
 </div> -->
 
             <!-- Edit Booking Modal -->
-<div id="edit-modal" style="display: none;">
+       <div id="edit-modal" style="display: none;">
   <form id="edit-form">
     <input type="hidden" id="edit-id">
     <label>Service: <select id="edit-service"></select></label>
@@ -125,7 +123,7 @@
     <label>Email: <input type="email" id="edit-email" required></label>
     <button type="submit">Save Changes</button>
   </form>
-</div>
+       </div>
 
             
 <!-- Create Booking Modal -->
@@ -187,7 +185,7 @@
                     
                 </form>
             </div>-->
-        </div>
+     </div>
     </div>
     <script src="admin.js"></script>
     <script src="admin_02.js"></script>
