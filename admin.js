@@ -44,45 +44,19 @@ async function fetchData(url, options = {}) {
 /**
  * Fetches all bookings from the API and displays them in a table.
  */
-let currentPage = 1;
-let currentSearch = '';
-
-document.getElementById('search-input').addEventListener('input', (e) => {
-    currentSearch = e.target.value;
-    currentPage = 1;
-    fetchBookings();
-});
-
-document.getElementById('prev-button').addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        fetchBookings();
-    }
-});
-
-document.getElementById('next-button').addEventListener('click', () => {
-    currentPage++;
-    fetchBookings();
-});
-
 async function fetchBookings() {
     const bookingsTableBody = document.querySelector('#bookings-table tbody');
     bookingsTableBody.innerHTML = '<tr><td colspan="7">Loading bookings...</td></tr>';
 
     try {
-        const response = await fetch(`${API_BASE_URL}/admin?search=${encodeURIComponent(currentSearch)}&page=${currentPage}`);
-        const data = await response.json();
-
-        const bookings = data.bookings;
-        const totalPages = data.totalPages;
-
-        bookingsTableBody.innerHTML = '';
+        const bookings = await fetchData(`${API_BASE_URL}/admin`);
 
         if (!bookings || bookings.length === 0) {
             bookingsTableBody.innerHTML = '<tr><td colspan="7">No bookings found.</td></tr>';
             return;
         }
 
+        bookingsTableBody.innerHTML = '';
         bookings.forEach(booking => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -100,13 +74,10 @@ async function fetchBookings() {
             bookingsTableBody.appendChild(row);
         });
 
-        document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
-        document.getElementById('prev-button').disabled = currentPage === 1;
-        document.getElementById('next-button').disabled = currentPage === totalPages;
-
         attachEventListenersToButtons();
+
     } catch (error) {
-        bookingsTableBody.innerHTML = '<tr><td colspan="7">Failed to load bookings.</td></tr>';
+        bookingsTableBody.innerHTML = '<tr><td colspan="7">Failed to load bookings. Please check your network and backend.</td></tr>';
     }
 }
 
@@ -337,4 +308,3 @@ document.getElementById('admin-login-form').addEventListener('submit', async fun
     showMessage('Network error during login.', 'error', 'login-message');
   }
 });
-
