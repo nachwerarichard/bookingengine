@@ -36,8 +36,8 @@
 
         <button id="open-create-modal" style="margin-left:200px;">+ Create New Booking</button>
         <h2>Bookings</h2>
-        <div style="display:flex;gap:10px;margin-left:200px; margin-right:20px;">
         <input type="text" id="search-input" placeholder="Search bookings..." />
+        <div style="display:flex;gap:10px;margin-left:200px; margin-right:20px;">
         <table id="bookings-table">
                 <thead>
                     <tr>
@@ -56,11 +56,7 @@
                     </tr>
                 </tbody>
         </table>
-            <div id="pagination-controls">
-               <button id="prev-button" disabled>Previous</button>
-               <span id="page-info">Page 1</span>
-               <button id="next-button">Next</button>
-            </div>
+            
   <div id="edit-booking-form" class="hidden" >
                 <h3>Edit Booking</h3>
                 <form id="edit-form">
@@ -83,11 +79,12 @@
                     <div id="edit-message" class="hidden"></div>
                 </form>
             </div>
-
         </div>
-
-         
-
+           <div id="pagination-controls">
+               <button id="prev-button" disabled>Previous</button>
+               <span id="page-info">Page 1</span>
+               <button id="next-button">Next</button>
+            </div>
             <!-- Create Booking Modal -->
         <div id="create-booking-modal" class="modal" style="display:none";>
   <div class="modal-content">
