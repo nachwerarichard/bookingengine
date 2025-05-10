@@ -38,7 +38,26 @@ async function fetchData(url, options = {}) {
         throw error;
     }
 }
+let currentPage = 1;
+let currentSearch = '';
 
+document.getElementById('search-input').addEventListener('input', (e) => {
+    currentSearch = e.target.value;
+    currentPage = 1;
+    fetchBookings();
+});
+
+document.getElementById('prev-button').addEventListener('click', () => {
+    if (currentPage > 1) {
+        currentPage--;
+        fetchBookings();
+    }
+});
+
+document.getElementById('next-button').addEventListener('click', () => {
+    currentPage++;
+    fetchBookings();
+});
 // --- Booking Management ---
 
 /**
