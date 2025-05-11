@@ -335,3 +335,13 @@ document.getElementById('bookings-tab').addEventListener('click', function () {
   document.getElementById('bookings-section').style.display = 'block';
 });
 
+document.getElementById('search-input').addEventListener('input', function () {
+    const searchValue = this.value.toLowerCase();
+    const tableRows = document.querySelectorAll('#bookings-table tbody tr');
+
+    tableRows.forEach(row => {
+        const rowText = row.innerText.toLowerCase();
+        row.style.display = rowText.includes(searchValue) ? '' : 'none';
+    });
+});
+
