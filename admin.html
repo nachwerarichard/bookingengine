@@ -12,9 +12,9 @@
     
     <div class="container">
 
-     <div id="login-form">
-      <h2>Admin Login</h2>
-      <form id="admin-login-form">
+       <div id="login-form">
+         <h2>Admin Login</h2>
+        <form id="admin-login-form">
         <label for="username">Username:</label>
         <input type="text" id="username" ><br><br>
         <label for="password">Password:</label>
@@ -43,6 +43,7 @@
         <button id="open-create-modal" style="margin-left:200px;">+ Create New Booking</button>
         <h2>Bookings</h2>
         <input type="text" id="search-input" placeholder="Search bookings..." style="margin-left:85%;" />
+            
         <div style="display:flex;gap:10px;margin-left:200px; margin-right:20px;">
         <table id="bookings-table">
                 <thead>
@@ -85,7 +86,6 @@
                     <div id="edit-message" class="hidden"></div>
                 </form>
             </div>
-<div id="pagination" style="margin: 20px auto; text-align: center;"></div>
             <!-- Create Booking Modal -->
         <div id="create-booking-modal" class="modal" style="display:none";>
   <div class="modal-content">
@@ -110,6 +110,8 @@
     </form>
   </div>
  </div>
+                    <div id="pagination" style="margin: 20px auto; text-align: center;"></div>
+
 </div>
 <script src="script2.js"></script>
     <script src="admin.js"></script>
