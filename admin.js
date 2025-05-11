@@ -345,7 +345,7 @@ document.getElementById('search-input').addEventListener('input', function () {
     });
 });
 
-let bookingsData = []; // store all bookings
+let bookingData = []; // store all bookings
 let currentPage = 1;
 const rowsPerPage = 4;
 function renderPage() {
@@ -353,8 +353,8 @@ function renderPage() {
     bookingsTableBody.innerHTML = '';
 
     const startIndex = (currentPage - 1) * rowsPerPage;
-    const endIndex = Math.min(startIndex + rowsPerPage, bookingsData.length);
-    const currentBookings = bookingsData.slice(startIndex, endIndex);
+    const endIndex = Math.min(startIndex + rowsPerPage, bookingData.length);
+    const currentBookings = bookingData.slice(startIndex, endIndex);
 
     currentBookings.forEach(booking => {
         const row = document.createElement('tr');
@@ -378,7 +378,7 @@ function renderPage() {
 }
 
 function updatePaginationControls() {
-    const totalPages = Math.ceil(bookingsData.length / rowsPerPage);
+    const totalPages = Math.ceil(bookingData.length / rowsPerPage);
     document.getElementById('prev-page').disabled = currentPage === 1;
     document.getElementById('next-page').disabled = currentPage === totalPages || totalPages === 0;
     document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
@@ -392,7 +392,7 @@ document.getElementById('prev-page').addEventListener('click', () => {
 });
 
 document.getElementById('next-page').addEventListener('click', () => {
-    const totalPages = Math.ceil(bookingsData.length / rowsPerPage);
+    const totalPages = Math.ceil(bookingData.length / rowsPerPage);
     if (currentPage < totalPages) {
         currentPage++;
         renderPage();
