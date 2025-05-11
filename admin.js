@@ -154,7 +154,46 @@ async function handleEditSubmit(event) {
  * Handles deleting a booking.
  * @param {string} id - The ID of the booking to delete.
  */
-async function deleteBooking(id) {
+let deleteId = null;
+
+function showDeleteModal(id) {
+  deleteId = id;
+  document.getElementById('delete-modal').classList.remove('hidden');
+}
+
+document.getElementById('cancel-delete-btn').addEventListener('click', () => {
+  deleteId = null;
+  document.getElementById('delete-modal').classList.add('hidden');
+});
+
+document.getElementById('confirm-delete-btn').addEventListener('click', async () => {
+  if (!deleteId) return;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/${deleteId}`, {
+      method: 'DELETE'
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      showMessage('Booking deleted successfully!', 'success', 'edit-message');
+      fetchBookings();
+    } else {
+      showMessage(data.message || 'Failed to delete booking.', 'error', 'edit-message');
+    }
+  } catch (error) {
+    showMessage('Error deleting booking. Please check your network.', 'error', 'edit-message');
+  } finally {
+    deleteId = null;
+    document.getElementById('delete-modal').classList.add('hidden');
+  }
+});
+function deleteBooking(id) {
+  showDeleteModal(id);
+}
+
+/**async function deleteBooking(id) {
     if (confirm('Are you sure you want to delete this booking?')) {
         try {
             const response = await fetch(`${API_BASE_URL}/${id}`, {
@@ -173,7 +212,7 @@ async function deleteBooking(id) {
             showMessage('Error deleting booking. Please check your network.', 'error', 'edit-message');
         }
     }
-}
+}*/
 
 /**
  * Handles the submission of the create booking form.
