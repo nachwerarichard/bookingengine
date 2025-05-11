@@ -345,7 +345,7 @@ document.getElementById('search-input').addEventListener('input', function () {
     });
 });
 
-let bookingData = []; // store all bookings
+/**let bookingData = []; // store all bookings
 let currentPag = 1;
 const rowsPerPag = 4;
 function renderPage() {
@@ -376,8 +376,9 @@ function renderPage() {
     attachEventListenersToButtons();
     updatePaginationControls();
 }
+/*
 
-function updatePaginationControls() {
+/**function updatePaginationControls() {
     const totalPages = Math.ceil(bookingData.length / rowsPerPag);
     document.getElementById('prev-page').disabled = currentPag === 1;
     document.getElementById('next-page').disabled = currentPag === totalPages || totalPages === 0;
@@ -397,4 +398,4 @@ document.getElementById('next-page').addEventListener('click', () => {
         currentPag++;
         renderPage();
     }
-});
+});*/
