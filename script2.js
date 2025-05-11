@@ -2,25 +2,6 @@ let currentPage = 1;
 const rowsPerPage = 4;
 let allBookings = [];
 
-async function fetchBookings() {
-    const bookingsTableBody = document.querySelector('#bookings-table tbody');
-    bookingsTableBody.innerHTML = '<tr><td colspan="7">Loading bookings...</td></tr>';
-
-    try {
-        allBookings = await fetchData(`${API_BASE_URL}/admin`);
-        if (!allBookings || allBookings.length === 0) {
-            bookingsTableBody.innerHTML = '<tr><td colspan="7">No bookings found.</td></tr>';
-            return;
-        }
-
-        currentPage = 1;
-        renderTable();
-
-    } catch (error) {
-        bookingsTableBody.innerHTML = '<tr><td colspan="7">Failed to load bookings. Please check your network and backend.</td></tr>';
-    }
-}
-
 function renderTable() {
     const bookingsTableBody = document.querySelector('#bookings-table tbody');
     bookingsTableBody.innerHTML = '';
