@@ -137,7 +137,7 @@
 
           <!-- Create Booking Modal -->
           <div id="create-booking-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-white p-6 rounded shadow-lg w-full max-w-md mx-auto my-auto" style="margin-top: 10%;">
+            <div class="bg-white p-6 rounded shadow-lg w-full max-w-md mx-auto my-auto" style="margin-top: 5%;">
               <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-bold">Create New Booking</h3>
                 <span id="close-create-modal" class="text-xl cursor-pointer">&times;</span>
@@ -183,13 +183,6 @@
   <script src="script2.js"></script>
   <script src="admin.js"></script>
   <script src="admin_02.js"></script>
-  <script>
-    document.getElementById('open-create-modal').addEventListener('click', () => {
-      document.getElementById('create-booking-modal').classList.remove('hidden');
-    });
-    document.getElementById('close-create-modal').addEventListener('click', () => {
-      document.getElementById('create-booking-modal').classList.add('hidden');
-    });
-  </script>
+  
 </body>
 </html>
