@@ -1,16 +1,16 @@
 let currentPage = 1;
 const rowsPerPage = 4;
-let allBookings = [];
+let bookingsData = [];
 
-function renderTable() {
+function renderTablePage(page) {
     const bookingsTableBody = document.querySelector('#bookings-table tbody');
     bookingsTableBody.innerHTML = '';
 
-    const start = (currentPage - 1) * rowsPerPage;
+    const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-    const paginatedBookings = allBookings.slice(start, end);
+    const pageData = bookingsData.slice(start, end);
 
-    paginatedBookings.forEach(booking => {
+    pageData.forEach(booking => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${booking._id}</td>
@@ -27,29 +27,25 @@ function renderTable() {
         bookingsTableBody.appendChild(row);
     });
 
-    updatePaginationControls();
     attachEventListenersToButtons();
 }
 
-function updatePaginationControls() {
-    const totalPages = Math.ceil(allBookings.length / rowsPerPage);
-    document.getElementById('page-indicator').textContent = `Page ${currentPage}`;
+function renderPagination() {
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = '';
 
-    document.getElementById('prev-button').disabled = currentPage === 1;
-    document.getElementById('next-button').disabled = currentPage === totalPages;
+    const totalPages = Math.ceil(bookingsData.length / rowsPerPage);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.style.margin = '0 5px';
+        btn.disabled = i === currentPage;
+        btn.addEventListener('click', () => {
+            currentPage = i;
+            renderTablePage(currentPage);
+            renderPagination();
+        });
+        paginationContainer.appendChild(btn);
+    }
 }
-
-document.getElementById('prev-button').addEventListener('click', () => {
-    if (currentPage > 1) {
-        currentPage--;
-        renderTable();
-    }
-});
-
-document.getElementById('next-button').addEventListener('click', () => {
-    const totalPages = Math.ceil(allBookings.length / rowsPerPage);
-    if (currentPage < totalPages) {
-        currentPage++;
-        renderTable();
-    }
-});
