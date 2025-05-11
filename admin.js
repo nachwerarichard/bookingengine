@@ -55,9 +55,10 @@ async function fetchBookings() {
             bookingsTableBody.innerHTML = '<tr><td colspan="7">No bookings found.</td></tr>';
             return;
         }
-
+        const maxRows = 4;
+        const limitedBookings = bookings.slice(0, maxRows);
         bookingsTableBody.innerHTML = '';
-        bookings.forEach(booking => {
+        limitedBookings.forEach(booking => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${booking._id}</td>
