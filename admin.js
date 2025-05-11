@@ -308,3 +308,19 @@ document.getElementById('admin-login-form').addEventListener('submit', async fun
     showMessage('Network error during login.', 'error', 'login-message');
   }
 });
+
+// --- Logout Function ---
+function handleLogout() {
+    // Optionally clear any session data
+    // sessionStorage.clear(); // If you're using sessionStorage
+    // localStorage.clear();   // If you're using localStorage
+
+    // Hide dashboard and show login form
+    document.getElementById('dashboard-content').classList.add('hidden');
+    document.getElementById('login-form').classList.remove('hidden');
+
+    showMessage('You have been logged out.', 'success', 'create-message'); // Or another target ID
+}
+
+// --- Add Event Listener to Logout Button ---
+document.getElementById('logout-btn').addEventListener('click', handleLogout);
