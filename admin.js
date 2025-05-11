@@ -50,7 +50,7 @@ async function fetchBookings() {
 
     try {
         const bookings = await fetchData(`${API_BASE_URL}/admin`);
-
+        bookingsData = bookings || [];
         if (!bookings || bookings.length === 0) {
             bookingsTableBody.innerHTML = '<tr><td colspan="7">No bookings found.</td></tr>';
             return;
@@ -76,6 +76,8 @@ async function fetchBookings() {
         });
 
         attachEventListenersToButtons();
+        renderTablePage(currentPage);
+        renderPagination();
 
     } catch (error) {
         bookingsTableBody.innerHTML = '<tr><td colspan="7">Failed to load bookings. Please check your network and backend.</td></tr>';
