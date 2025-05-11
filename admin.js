@@ -324,3 +324,14 @@ function handleLogout() {
 
 // --- Add Event Listener to Logout Button ---
 document.getElementById('logout-btn').addEventListener('click', handleLogout);
+
+document.getElementById('dashboard-tab').addEventListener('click', function () {
+  document.getElementById('dashboard-section').style.display = 'block';
+  document.getElementById('bookings-section').style.display = 'none';
+});
+
+document.getElementById('bookings-tab').addEventListener('click', function () {
+  document.getElementById('dashboard-section').style.display = 'none';
+  document.getElementById('bookings-section').style.display = 'block';
+});
+
