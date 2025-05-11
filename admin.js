@@ -49,11 +49,9 @@ async function fetchBookings() {
     bookingsTableBody.innerHTML = '<tr><td colspan="7">Loading bookings...</td></tr>';
 
     try {
- const url = searchTerm
-            ? `${API_BASE_URL}/admin?search=${encodeURIComponent(searchTerm)}`
-            : `${API_BASE_URL}/admin`;
-
-        const bookings = await fetchData(url);
+        const response = await fetch(`${API_BASE_URL}/admin?search=${encodeURIComponent(searchTerm)}`);
+        const bookings = await response.json();
+        console.log('Bookings:', bookings); // 🔍 Log response
         if (!bookings || bookings.length === 0) {
             bookingsTableBody.innerHTML = '<tr><td colspan="7">No bookings found.</td></tr>';
             return;
