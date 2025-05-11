@@ -5,6 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Booking Engine Admin Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Ensure content spans the entire screen */
+    #content {
+      position: relative;
+      height: 100vh; /* Full viewport height */
+    }
+
+    /* Center modal from the top and left */
+    #create-booking-modal {
+      position: absolute;
+      top: 50%; /* Start from the middle of the screen */
+      left: 50%; /* Start from the middle of the screen */
+      transform: translate(-50%, -50%); /* Adjust to truly center */
+      z-index: 100; /* Ensure modal is above other content */
+    }
+  </style>
 </head>
 <body class="bg-gray-100 h-screen w-screen">
 
@@ -180,9 +196,13 @@
   </div>
 
   <!-- Scripts -->
+
   <script src="script2.js"></script>
+
   <script src="admin.js"></script>
+
   <script src="admin_02.js"></script>
+
   <script>
     document.getElementById('open-create-modal').addEventListener('click', () => {
       document.getElementById('create-booking-modal').classList.remove('hidden');
@@ -191,5 +211,6 @@
       document.getElementById('create-booking-modal').classList.add('hidden');
     });
   </script>
+
 </body>
 </html>
