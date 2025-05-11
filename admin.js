@@ -347,13 +347,13 @@ document.getElementById('search-input').addEventListener('input', function () {
 
 let bookingData = []; // store all bookings
 let currentPag = 1;
-const rowsPerPage = 4;
+const rowsPerPag = 4;
 function renderPage() {
     const bookingsTableBody = document.querySelector('#bookings-table tbody');
     bookingsTableBody.innerHTML = '';
 
-    const startIndex = (currentPag - 1) * rowsPerPage;
-    const endIndex = Math.min(startIndex + rowsPerPage, bookingData.length);
+    const startIndex = (currentPag - 1) * rowsPerPag;
+    const endIndex = Math.min(startIndex + rowsPerPag, bookingData.length);
     const currentBookings = bookingData.slice(startIndex, endIndex);
 
     currentBookings.forEach(booking => {
@@ -378,7 +378,7 @@ function renderPage() {
 }
 
 function updatePaginationControls() {
-    const totalPages = Math.ceil(bookingData.length / rowsPerPage);
+    const totalPages = Math.ceil(bookingData.length / rowsPerPag);
     document.getElementById('prev-page').disabled = currentPag === 1;
     document.getElementById('next-page').disabled = currentPag === totalPages || totalPages === 0;
     document.getElementById('page-info').textContent = `Page ${currentPag} of ${totalPages}`;
@@ -392,7 +392,7 @@ document.getElementById('prev-page').addEventListener('click', () => {
 });
 
 document.getElementById('next-page').addEventListener('click', () => {
-    const totalPages = Math.ceil(bookingData.length / rowsPerPage);
+    const totalPages = Math.ceil(bookingData.length / rowsPerPag);
     if (currentPag < totalPages) {
         currentPag++;
         renderPage();
