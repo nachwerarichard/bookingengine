@@ -22,22 +22,22 @@
         <button type="submit">Login</button>
         <div id="login-message" class="hidden"></div>
       </form>
-     </div>
+       </div>
 
      <div id="dashboard-content" style="width:100%; margin:0px;" class=" hidden" >
-        <aside class="sidebar">
-    <ul>
+     <aside class="sidebar">
+      <ul>
       <li id="dashboard-tab"><span>🏠</span> Dashboard</li>
       <li id="bookings-tab"><span>📖</span> Bookings</li>
       <li><span>⚙️</span> Settings</li>
       <li id="logout-btn"><span>🚪</span> Logout</li>
     </ul>
-    </aside>
-    <div id="content">
-    <div id="dashboard-section" style="margin-left:200px;">
+     </aside>
+      <div id="content">
+        <div id="dashboard-section" style="margin-left:200px;">
         <p>Welcome to booking dashboard</p>
       <p> Click on 'Bookings' to view them.</p>
-    </div>
+        </div>
 
         <div id="bookings-section" style="display: none;">
         <button id="open-create-modal" style="margin-left:200px;">+ Create New Booking</button>
@@ -64,7 +64,7 @@
                 </tbody>
         </table>
             
-  <div id="edit-booking-form" class="hidden" >
+         <div id="edit-booking-form" class="hidden" >
                 <h3>Edit Booking</h3>
                 <form id="edit-form">
                     <label for="edit-service">Service:</label>
@@ -85,10 +85,10 @@
                     <button type="cancel"onclick="edit-booking-form.style.display="none"">Cancel</button>
                     <div id="edit-message" class="hidden"></div>
                 </form>
-            </div>
+         </div>
             <!-- Create Booking Modal -->
         <div id="create-booking-modal" class="modal" style="display:none";>
-  <div class="modal-content">
+         <div class="modal-content">
     <span id="close-create-modal" class="close">&times;</span>
     <h3>Create New Booking</h3>
     <form id="create-form">
@@ -108,14 +108,15 @@
       <button type="submit">Create Booking</button>
       <div id="create-message" class="hidden"></div>
     </form>
-  </div>
- </div>
-                    <div id="pagination" style="margin: 20px auto; text-align: center;"></div>
-
-</div>
+          </div>
+        </div>
+        </div>
+        <div id="pagination" style="margin: 20px auto; text-align: center;"></div>
+        </div>
+    </div>
 <script src="script2.js"></script>
-    <script src="admin.js"></script>
-    <script src="admin_02.js"></script>
+<script src="admin.js"></script>
+<script src="admin_02.js"></script>
 
 </body>
 </html>
