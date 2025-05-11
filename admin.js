@@ -49,9 +49,8 @@ async function fetchBookings() {
     bookingsTableBody.innerHTML = '<tr><td colspan="7">Loading bookings...</td></tr>';
 
     try {
-        const response = await fetch(`${API_BASE_URL}/admin?search=${encodeURIComponent(searchTerm)}`);
-        const bookings = await response.json();
-        console.log('Bookings:', bookings); // 🔍 Log response
+        const bookings = await fetchData(`${API_BASE_URL}/admin`);
+
         if (!bookings || bookings.length === 0) {
             bookingsTableBody.innerHTML = '<tr><td colspan="7">No bookings found.</td></tr>';
             return;
@@ -336,7 +335,7 @@ document.getElementById('bookings-tab').addEventListener('click', function () {
   document.getElementById('bookings-section').style.display = 'block';
 });
 
-/**document.getElementById('search-input').addEventListener('input', function () {
+document.getElementById('search-input').addEventListener('input', function () {
     const searchValue = this.value.toLowerCase();
     const tableRows = document.querySelectorAll('#bookings-table tbody tr');
 
@@ -345,9 +344,3 @@ document.getElementById('bookings-tab').addEventListener('click', function () {
         row.style.display = rowText.includes(searchValue) ? '' : 'none';
     });
 });
-*/
-document.getElementById('search-input').addEventListener('input', async function () {
-    const searchTerm = this.value.trim();
-    await fetchBookings(searchTerm);
-});
-
