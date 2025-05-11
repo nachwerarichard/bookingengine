@@ -1,6 +1,6 @@
 let bookingsData = []; // store all bookings
 let currentPage = 1;
-const rowsPerPage = 10;
+const rowsPerPage = 4;
 
 async function fetchBookings() {
     const bookingsTableBody = document.querySelector('#bookings-table tbody');
