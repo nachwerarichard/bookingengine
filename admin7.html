@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Engine Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="styles_02.css"> 
+    
+</head>
+<body>
+    
+    <div class="container">
+
+       <div id="login-form">
+         <h2>Admin Login</h2>
+        <form id="admin-login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" ><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" ><br><br>
+        <button type="submit">Login</button>
+        <div id="login-message" class="hidden"></div>
+      </form>
+       </div>
+
+     <div id="dashboard-content" style="width:100%; margin:0px;"  >
+     <aside class="sidebar">
+         <div class="brand">
+    <img src="logo.png" alt="Brand Logo" class="logo">
+    <h1 class="brand-name">Richy</h1>
+  </div>
+      <ul>
+      <li id="dashboard-tab"><span>🏠</span> Dashboard</li>
+      <li id="bookings-tab"><span>📖</span> Bookings</li>
+      <li><span>⚙️</span> Settings</li>
+      <li id="logout-btn"><span>🚪</span> Logout</li>
+    </ul>
+     </aside>
+      <div id="content">
+        <div id="dashboard-section" style="margin-left:200px;">
+        <p>Welcome to booking dashboard</p>
+      <p> Click on 'Bookings' to view them.</p>
+        </div>
+
+        <div id="bookings-section" style="display: none;">
+            <div id="delete-modal" class="hidden">
+             <div class="modal-content">
+    <p>Are you sure you want to delete this booking?</p>
+    <button id="confirm-delete-btn">Yes</button>
+    <button id="cancel-delete-btn">No</button>
+             </div>
+           </div>
+        <button id="open-create-modal" style="margin-left:200px;">+ Create New Booking</button>
+        <h2>Bookings</h2>
+        <input type="text" id="search-input" placeholder="Search bookings..." style="margin-left:85%;" />
+            
+        <div style="display:flex;gap:10px;margin-left:200px; margin-right:20px;">
+        <table id="bookings-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6">Loading bookings...</td>
+                    </tr>
+                </tbody>
+        </table>
+            
+         <div id="edit-booking-form" class="hidden" >
+                <h3>Edit Booking</h3>
+                <form id="edit-form">
+                    <label for="edit-service">Service:</label>
+                    <select id="edit-service">
+                        <option value="room">Room Booking</option>
+                        <option value="appointment">Appointment</option>
+                    </select><br><br>
+                    <label for="edit-date">Date:</label>
+                    <input type="date" id="edit-date" required><br><br>
+                    <label for="edit-time">Time:</label>
+                    <input type="time" id="edit-time" required><br><br>
+                    <label for="edit-name">Name:</label>
+                    <input type="text" id="edit-name" required><br><br>
+                    <label for="edit-email">Email:</label>
+                    <input type="email" id="edit-email" required><br><br>
+                    <input type="hidden" id="edit-id">
+                    <button type="submit">Save Changes</button>
+                    <button type="cancel"onclick="edit-booking-form.style.display="none"">Cancel</button>
+                    <div id="edit-message" class="hidden"></div>
+                </form>
+         </div>
+            
+            <!-- Create Booking Modal -->
+        <div id="create-booking-modal" class="modal" style="display:none";>
+         <div class="modal-content">
+    <span id="close-create-modal" class="close">&times;</span>
+    <h3>Create New Booking</h3>
+    <form id="create-form">
+      <label for="create-service">Service:</label>
+      <select id="create-service">
+        <option value="room">Room Booking</option>
+        <option value="appointment">Appointment</option>
+      </select><br><br>
+      <label for="create-date">Date:</label>
+      <input type="date" id="create-date" required><br><br>
+      <label for="create-time">Time:</label>
+      <input type="time" id="create-time" required><br><br>
+      <label for="create-name">Name:</label>
+      <input type="text" id="create-name" required><br><br>
+      <label for="create-email">Email:</label>
+      <input type="email" id="create-email" required><br><br>
+      <button type="submit">Create Booking</button>
+      <div id="create-message" class="hidden"></div>
+    </form>
+          </div>
+        </div>
+        </div>
+        <div id="pagination" style="margin: 20px auto; text-align: center;"></div>
+        </div>
+    </div>
+<script src="script2.js"></script>
+<script src="admin.js"></script>
+<script src="admin_02.js"></script>
+
+</body>
+</html>
